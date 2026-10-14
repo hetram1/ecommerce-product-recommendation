@@ -1,0 +1,17 @@
+{
+  "split": "Chronological 80/20 invoice-level split",
+  "task": "Given one item from a later invoice, retrieve other items from that invoice",
+  "evaluated_test_invoices": 2500,
+  "top_k": 5,
+  "notes": "Only products seen in the training catalog are evaluated. The source includes wholesale orders. This is an offline proxy, not an online A/B test.",
+  "results": {
+    "popularity": {
+      "hit_rate_at_5": 0.2296,
+      "recall_at_5": 0.0266
+    },
+    "similarity": {
+      "hit_rate_at_5": 0.5048,
+      "recall_at_5": 0.1121
+    }
+  }
+}
