@@ -1,0 +1,39 @@
+{
+  "model_build_id": "bfc286bd4a88bd2c",
+  "environment": "Windows host, Ubuntu WSL, Python 3.14.4",
+  "automated_tests": {
+    "command": ".venv/bin/python -m pytest -q -W error::DeprecationWarning",
+    "passed": 81,
+    "failed": 0,
+    "duration_seconds": 113.13,
+    "warnings": 0
+  },
+  "dependencies": {
+    "command": ".venv/bin/python -m pip check",
+    "result": "No broken requirements found."
+  },
+  "live_api_checks": {
+    "health": "200, loaded 1200-product model",
+    "search": "Case-insensitive heart search returned 108 matches with limit=2",
+    "single_product": "85123A, similarity, k=5: five recommendations",
+    "basket": "85123A, 22469, repeated 85123A, k=10: two distinct seeds and ten recommendations; no duplicates or seed overlap",
+    "unknown_product": 404,
+    "invalid_k": 422,
+    "swagger_document": 200
+  },
+  "browser_checks": {
+    "desktop": "1280x720: product discovery, add selected product, add a suggestion, two-product basket, analytics chart, top-10 basket metrics",
+    "phone": "390x844: stacked basket controls and cards; preserved recommendation order; viewport restored afterwards",
+    "automated_ui": "Search, no matches, add, duplicate prevention, remove, clear, analytics tasks/cutoffs, missing-model recovery, and unmeasured evaluation values",
+    "screenshots": ["docs/screenshots/basket.jpg", "docs/screenshots/evaluation.jpg"]
+  },
+  "in_process_smoke_measurements": {
+    "artifact_load_seconds": 0.192,
+    "cached_basket_calls": 500,
+    "warmup_distinct_baskets": 50,
+    "cached_basket_total_seconds": 0.012,
+    "training_libraries_imported_when_serving": [],
+    "note": "One local in-process smoke run on this computer; not end-to-end HTTP latency, an SLA, or a controlled comparison with the old implementation."
+  },
+  "hosted_ci": "Workflow added for Python 3.12 on Windows and Ubuntu; not executed from this local run."
+}

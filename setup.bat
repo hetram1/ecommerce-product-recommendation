@@ -1,5 +1,10 @@
 @echo off
 cd /d "%~dp0"
+if exist ".venv\bin\activate" (
+  echo This .venv belongs to Linux/WSL. Use the WSL setup commands in README.md.
+  echo To keep both environments, create a Windows environment named .venv-win.
+  exit /b 1
+)
 echo [1/4] Creating Python environment...
 py -m venv .venv || goto :failed
 echo [2/4] Installing dependencies...

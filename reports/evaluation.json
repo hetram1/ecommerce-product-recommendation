@@ -1,17 +1,101 @@
 {
-  "split": "Chronological 80/20 invoice-level split",
-  "task": "Given one item from a later invoice, retrieve other items from that invoice",
-  "evaluated_test_invoices": 2500,
-  "top_k": 5,
-  "notes": "Only products seen in the training catalog are evaluated. The source includes wholesale orders. This is an offline proxy, not an online A/B test.",
-  "results": {
-    "popularity": {
-      "hit_rate_at_5": 0.2296,
-      "recall_at_5": 0.0266
-    },
-    "similarity": {
-      "hit_rate_at_5": 0.5048,
-      "recall_at_5": 0.1121
-    }
+ "random_seed": 42,
+ "cutoffs": [
+  5,
+  10
+ ],
+ "size_filtered_test_baskets": 3020,
+ "evaluated_test_invoices": 2882,
+ "evaluated_basket_invoices": 2698,
+ "test_catalog_item_fraction": 0.754244,
+ "single_product_task": "Reveal one product; retrieve other eligible items from the invoice",
+ "basket_task": "Reveal 2\u20133 products; retrieve remaining eligible items (at least one hidden)",
+ "results": {
+  "similarity": {
+   "hit_rate_at_5": 0.504511,
+   "recall_at_5": 0.110892,
+   "coverage_at_5": 0.9075,
+   "hit_rate_at_10": 0.595767,
+   "recall_at_10": 0.150996,
+   "coverage_at_10": 0.976667
+  },
+  "frequently_bought": {
+   "hit_rate_at_5": 0.533657,
+   "recall_at_5": 0.115503,
+   "coverage_at_5": 0.726667,
+   "hit_rate_at_10": 0.62873,
+   "recall_at_10": 0.158647,
+   "coverage_at_10": 0.825
+  },
+  "popularity": {
+   "hit_rate_at_5": 0.234559,
+   "recall_at_5": 0.028196,
+   "coverage_at_5": 0.005,
+   "hit_rate_at_10": 0.314365,
+   "recall_at_10": 0.042276,
+   "coverage_at_10": 0.009167
   }
+ },
+ "basket_results": {
+  "similarity": {
+   "hit_rate_at_5": 0.640474,
+   "recall_at_5": 0.159701,
+   "coverage_at_5": 0.833333,
+   "hit_rate_at_10": 0.730912,
+   "recall_at_10": 0.220156,
+   "coverage_at_10": 0.924167
+  },
+  "frequently_bought": {
+   "hit_rate_at_5": 0.630096,
+   "recall_at_5": 0.151236,
+   "coverage_at_5": 0.6175,
+   "hit_rate_at_10": 0.727205,
+   "recall_at_10": 0.212247,
+   "coverage_at_10": 0.733333
+  },
+  "popularity": {
+   "hit_rate_at_5": 0.205337,
+   "recall_at_5": 0.027067,
+   "coverage_at_5": 0.005833,
+   "hit_rate_at_10": 0.285026,
+   "recall_at_10": 0.043189,
+   "coverage_at_10": 0.01
+  }
+ },
+ "notes": "All eligible later invoices are evaluated; all methods use identical queries. Only training-catalog products count as relevant. Baskets contain 2\u201340 distinct products. Coverage is the fraction of the training catalog recommended across evaluated queries. The source includes wholesale orders and repeat customers. This offline co-purchase task does not measure personalized preferences, sales uplift, or online satisfaction.",
+ "build_id": "bfc286bd4a88bd2c",
+ "schema_version": 2,
+ "split": {
+  "strategy": "Chronological invoice split; timestamp ties stay together",
+  "target_train_fraction": 0.8,
+  "cutoff": "2011-10-26T13:27:00",
+  "train_start": "2010-12-01T08:26:00",
+  "train_end": "2011-10-26T13:24:00",
+  "test_start": "2011-10-26T13:27:00",
+  "test_end": "2011-12-09T12:50:00",
+  "train_invoices": 15816,
+  "test_invoices": 3955,
+  "spanning_invoices_dropped": 0
+ },
+ "provenance": {
+  "source_file": "Online Retail.xlsx",
+  "source_sha256": "43465a06f2ccf7c8b5bd2892bc7defb52f97487934fe93b16ae4c3936424676d",
+  "python_version": "3.14.4",
+  "packages": {
+   "pandas": "2.3.3",
+   "numpy": "2.5.4",
+   "scipy": "1.18.1",
+   "openpyxl": "3.1.5"
+  },
+  "built_at_utc": "2026-11-04T08:24:12.575998+00:00"
+ },
+ "training_config": {
+  "max_products": 1200,
+  "min_orders": 5,
+  "neighbors_per_product": 50,
+  "min_pair_orders": 2,
+  "min_basket_size": 2,
+  "max_basket_size": 40
+ },
+ "build_seconds": 35.1
 }
